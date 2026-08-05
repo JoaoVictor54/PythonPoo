@@ -46,19 +46,26 @@ class Plantacao(Gerenciamento):
 
 class Animais(Gerenciamento):
     def __init__(self):
+        self.qtanimais = 0
+        self.qtalimentado = 0
         self.totalanimais = []
         self.sealimentado = []
 
 
     def status(self):
-        print("Eu tenho Tantos animais e Tantas foram alimentados")
-        print("Quantidade de animais e quantos foram aimentados ")
-
+        print(f"Eu tenho {self.qtanimais} animais e {self.qtalimentado} foram alimentados")
+        n=1
+        for i in self.totalanimais:
+                    print(f"{n}- {i} {self.sealimentado[n-1]} ")
+                    n+=1
 
     def add(self,nome):
+        
         self.totalanimais.append(nome)
-        self.sealimentado.append("Não alimentado")
+        self.sealimentado.append("(Não alimentado)")
+        self.qtanimais+=1
 
 
     def alimentar(self,i):
-        self.sealimentado[i-1] = "Alimentado"
+        self.sealimentado[i-1] = "(Alimentado)"
+        self.qtalimentado +=1
