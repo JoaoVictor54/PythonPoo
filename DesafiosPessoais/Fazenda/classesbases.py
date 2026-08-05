@@ -1,8 +1,10 @@
 from abc import ABC,abstractmethod
+from rich.panel import Panel
+from rich import print
+
 
 class Gerenciamento(ABC):
-    def __init__(self):
-        self.__quantSlots = 0
+
 
     @abstractmethod
     def status(self):
@@ -24,11 +26,13 @@ class Plantacao(Gerenciamento):
 
 
     def status(self):
-        print(f"Eu tenho {self.qtplantacoes} Plantações e {self.qtregado} foram regadas\n")
+        #print(f"Eu tenho {self.qtplantacoes} Plantações e {self.qtregado} foram regadas\n")
         n=1
+        text = ""
         for i in self.totalplantacoes:
-            print(f"{n}- {i} {self.seregado[n-1]} ")
+            text +=(f"{str(n)}- {str(i)} {self.seregado[(n-1)]}\n")
             n+=1
+        return text
             
 
 
@@ -44,6 +48,9 @@ class Plantacao(Gerenciamento):
 
 
 
+
+
+
 class Animais(Gerenciamento):
     def __init__(self):
         self.qtanimais = 0
@@ -53,11 +60,14 @@ class Animais(Gerenciamento):
 
 
     def status(self):
-        print(f"Eu tenho {self.qtanimais} animais e {self.qtalimentado} foram alimentados")
+        #print(f"Eu tenho {self.qtanimais} animais e {self.qtalimentado} foram alimentados")
         n=1
+        self.text=""
         for i in self.totalanimais:
-                    print(f"{n}- {i} {self.sealimentado[n-1]} ")
+                    self.text += (f"{n}- {i} {self.sealimentado[n-1]}\n")
                     n+=1
+
+        return self.text
 
     def add(self,nome):
         
@@ -69,3 +79,5 @@ class Animais(Gerenciamento):
     def alimentar(self,i):
         self.sealimentado[i-1] = "(Alimentado)"
         self.qtalimentado +=1
+
+
